@@ -1,12 +1,14 @@
 type Course {
-    _id: ID,
-    title: String,
-    teacher: String,
-    description: String,
+    _id: ID!,
+    title: String!,
+    teacher: String!,
+    description: String!,
     topic: String,
 }
 
 type Query {
     "Retunrns all courses"
     getCourses: [Course]
+    "Retunrns just one course"
+    getCourse(id: ID!): Course
 }
