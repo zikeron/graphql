@@ -1,26 +1,63 @@
 type Course {
+    _id: ID!
+    title: String!
+    teacher: String!
+    description: String!
+    topic: String
+}
+
+type Student {
     _id: ID!,
-    title: String!,
-    teacher: String!,
-    description: String!,
-    topic: String,
+    name: String!
+    email: String!
 }
 
 type Query {
     "Retunrns all courses"
     getCourses: [Course]
     "Retunrns just one course"
-    getCourse(id: ID!): Course
+    getCourse(id: ID!): Student
+    "Retunrns all students"
+    getStudents: [Student]
+    "Retunrns just one student"
+    getStudent(id: ID!): Student
 }
 
 input CourseInput {
-    title: String!,
-    teacher: String!,
-    description: String!,
-    topic: String,
+    title: String!
+    teacher: String!
+    description: String!
+    topic: String
+}
+
+input CourseEditInput {
+    title: String
+    teacher: String
+    description: String
+    topic: String
+}
+
+input StudentInput {
+    name: String!
+    email: String!
+}
+
+input StudenEditInput {
+    name: String
+    email: String
 }
 
 type Mutation {
     "Create new course"
-    createCourse(input: CourseInput!): Course
+    createCourse(input: CourseInput!): Course,
+    "Edit an existing course"
+    editCourse(_id: ID!, input: CourseEditInput): Course
+    "Create new Studen"
+    createStudent(input: StudentInput!): Student
+    "Edit an existing studeent"
+    editStudent(_id: ID!, input: StudenEditInput): Student
+    "Remove course from collection"
+    removeCourse(_id: ID): String
+    "Remove student from collection"
+    removeStudent(_id: ID): String
 }
